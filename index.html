@@ -4,43 +4,76 @@
   <title>Be My Valentine 💖</title>
   <style>
     body {
+      background: pink;
       text-align: center;
       font-family: Arial, sans-serif;
-      background: pink;
       height: 100vh;
       margin: 0;
+      overflow: hidden;
     }
-    h1 { margin-top: 100px; }
+
+    h1 {
+      margin-top: 100px;
+      color: #b30059;
+    }
+
     button {
       padding: 15px 30px;
       font-size: 18px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      margin: 20px;
     }
+
+    #yes {
+      background: red;
+      color: white;
+    }
+
     #no {
       position: absolute;
+      background: white;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { top: -10%; }
+      100% { top: 110%; }
     }
   </style>
 </head>
+
 <body>
 
-<h1>Will you be my Valentine? 💘</h1>
+  <h1>Piyush, will you be my Valentine? 💘</h1>
 
-<button onclick="yesClicked()">YES 💖</button>
-<button id="no" onmouseover="moveNo()">NO 😜</button>
+  <button id="yes" onclick="alert('YAY!!! 💖💖💖')">YES</button>
+  <button id="no">NO</button>
 
-<script>
-  function moveNo() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
-    document.getElementById("no").style.left = x + "px";
-    document.getElementById("no").style.top = y + "px";
-  }
-  function yesClicked() {
-    document.body.innerHTML = "<h1>YAYYY! 💕💍🥰</h1>";
-  }
-</script>
+  <script>
+    const noBtn = document.getElementById("no");
+
+    noBtn.addEventListener("mouseover", () => {
+      noBtn.style.left = Math.random() * 80 + "vw";
+      noBtn.style.top = Math.random() * 80 + "vh";
+    });
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }, 300);
+  </script>
 
 </body>
 </html>
